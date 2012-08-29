@@ -1,0 +1,35 @@
+body {
+	color: #003366;
+	font: 12px Verdana, sans-serif;
+	position: relative;
+	margin: 5px 5px 5px 5px;
+	background: #ffffff;
+	background: url(images/backg.png);
+}
+th {
+	font-weight: bold;
+	vertical-align: top;
+}
+input {
+	font-weight : 800;
+	color: blue;
+}
+.error {
+	color: red;
+	font-size: 120%;
+}
+.success {
+	font-size: 130%;
+	text-align: center;
+	color: #0079ff;
+}
+.hed {
+	font-size: 130%;
+	color: #003366;
+	text-align: center;
+}
+.gbtext {
+	font-size: 110%;
+	color: maroon;
+	font-weight : 800;
+}

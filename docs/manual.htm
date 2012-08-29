@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Guest book user manual</title>
+	<meta name="description" content="Guest Book Documentation" />
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" media="all" href="docStyle.css" />
+</head>
+
+<body>
+
+<a name="top"></a><h1>Guest book user manual</h1>
+
+<h3>Table of contents</h3>
+
+<ul>
+	<a href="#Introduction"><li>Introduction</li></a>
+	<a href="#installation"><li>Installation</li></a>
+	<a href="#System"><li>System requirements</li></a>
+	<a href="#Main"><li>Main guest book window</li></a>
+	<a href="#Adding"><li>Adding new guest book entries</li></a>
+	<a href="#Editing"><li>Editing guest book entries</li></a>
+	<a href="#Deleting"><li>Deleting guest book entries</li></a>
+	<a href="#admin"><li>Accessing and using administrative area</li></a>
+	<a href="#look"><li>Modifying guest book look and feel</li></a>
+	<a href="#performance"><li>Guest book performance</li></a>
+	<a href="#error"><li>Error handling</li></a>
+	<a href="#Contact"><li>Contact information</li></a>
+</ul>
+
+<a name="Introduction"></a><h3>Introduction</h3>
+
+<p>The XML Guest Book was created to answer a need in ColdFusion community for a guest
+book application that was not linked to any database, but at the same time was as powerful
+as any guest book that uses database as a back-end storage solution. The storage of all
+guest book data is, as the application name suggests, done using multiple XML data files.</p>
+
+<p>The aim of this short tutorial is to familiarize guest book owner with all common 
+software functionality. This includes all options that can be configured on the XML Guest 
+Book settings page. For information about how the XML Guest Book works under the hood, the reader is referred to programmer's notes,
+which can be accessed 
+<a name="programmer's documentation" id="programmer's documentation" href="http://www.tomkitta.com/coldfusion/gb/index.cfm" title="programmer's documentation">on companion web site</a>.</p>
+
+<p>XML Guest book futures:</p>
+<ul>
+	<li>Flexible multi-file XML based data and setup storage</li>
+	<li>Separation of business logic and presentation allows for quick visual customization by people that are not ColdFusion savvy</li>
+	<li>Secure administrative area that offers setup for the following futures:</li>
+	<ul>
+		<li>Maximum end-user message-mail, web site, name length</li>
+		<li>Maximum number of guest book shown per page</li>
+		<li>List of banned words and banned IP addresses</li>
+		<li>Two message sorting options</li>
+	</ul>
+	<li>Administrators have the ability to edit and delete guest book entries</li>
+	<li>Comprehensive documentation and companion web site</li>
+</ul>
+
+<a name="installation"></a><h3>XML Guest book installation</h3>
+
+<p>The installation process for XML Guest Book is relatively simple when compared to most
+open source and commercial web applications available for ColdFusion on the market today. All that is 
+required of the user is to unzip (uncompress) installation file to directory under his or her web site root. For
+details as to how to perform such operation user is directed to the documentation of the compression
+utility.</p>
+
+<p>As an example, lets assume that web site http://www.mysample.com points to directory
+c:\Inetpub\wwwroot\mysample The guest book owner, Joe Sample, wants to install XML Guest Book
+to directory named guestbook. He creates directory called guestbook under c:\Inetpub\wwwroot\
+Joe Sample uses his favorite un-compression utility to unzip the guest book installation file. When prompted for the unzipping path he
+types in c:\Inetpub\wwwroot\mysample\guestbook</p>
+
+<p>Once the guest book is uncompressed to its destination folder the setup ends. That's it!
+There is nothing more to do. Administrator has to point to the directory where he or she installed the guest book and
+enjoy. Isn't that the easiest web application install procedure you ever experienced? This is made
+possible with some clever programming with you, the end-user in mind.</p>
+
+<p>Lets take above example (with Joe Sample) a little bit further. Joe points to the page http://www.mysample.com/guestbook
+to view the default guest book page. The default administrative
+area password is "admin" (without quotes). To access administrative area Joe has to type 
+into his browser window one of the following web addresses:</p>
+
+<ul>
+	<li>http://www.mysample.com/guestbook/index.cfm?admin=1</li>
+	<li>http://www.mysample.com/guestbook/index.cfm?admin</li>
+	<li>http://www.mysample.com/guestbook/?admin</li>
+	<li>http://www.mysample.com/guestbook/login.cfm</li>
+</ul>
+
+<a name="System"></a><h3>System requirements</h3>
+
+<p>XML Guest Book doesn't need back-end database system to operate. All data that is needed
+by this application is stored in XML format under the <i>data</i> subdirectory. This web application
+requires the presence of ColdFusion MX server or higher either professional or enterprise edition (it will
+work fine on the development edition as well). The application needs access to data files, read and write
+access must be granted. ColdFusion server security is accessed through ColdFusion administrator. For
+more information about how to change security settings on your server, please contact Macromedia customer
+support. To find out what security settings are applied to your ColdFusion server, please contact your
+hosting company. Note that by default ColdFusion server doesn't have any security settings applied to it, thus
+XML Guest Book will work just find on a default installation of ColdFusion MX server (all editions).</p>
+
+<p>The following user clients were tested with XML Guest Book and found to be compatible:</p>
+<ul>
+	<li>Internet Explorer 6.0</li>
+	<li>FireFox 0.8 and 0.9</li>
+	<li>Opera 7.0</li>
+</ul>
+<p>The following web browsers are not compatible with XML Guest Book:</p>
+<ul>
+	<li>Netscape 4.7</li>
+</ul>
+
+<p>XML Guest Book uses basic CSS that is supported by newer browsers. Guest book doesn't use any JavaScript.
+Cookies are used only for administrative area log in (session variable storage), they are not used
+for display of guest book messages (end-user doesn't need to have cookies enabled). If you find a browser not
+listed above that works (or not) with XML Guest Book please inform the author.</p>
+
+<a name="Main"></a><h3>Main guest book window</h3>
+
+<p>The main guest book window is what users see when they want to check your guest book out.
+Users can surf all the entries placed in the guest book by its previous users using the handy navigation
+icons located for user convenience both at the top [Fig 1] and bottom [Fig 2] of the web page.
+<img src="img/man_img1.jpg" alt="Guest book navigation, top" style="border:0; height:180px; width:700px;"/>
+<br>
+<img src="img/man_img2.jpg" alt="Guest book navigation, bottom" style="border:0; height:100px; width:690px;"/>
+</p>
+
+<p>The guest book entries are shown sorted according to preferences set by the guest book
+administrator. There are two sorting options, <i>newer messages first</i> and <i>older messages first</i>.
+The navigation is intuitive and should pose no problems to the end-user.</p>
+
+<p>When the guest book administrator is logged into the system (it will be explained later on how to 
+do that) the top of the main guest book page changes to show more options [Fig 4].
+<img src="img/man_img4.jpg" alt="Guest book navigation, top, when guest book administrator is logged in" style="border:0; height:200px; width:700px;"/>
+When guest book administrator is logged in he or she can also view additional properties of each guest book 
+entry, like IP address of the person who entered the particular message and message ID. There is also option to
+edit and delete guest book entries [Fig 5].
+<img src="img/man_img5.jpg" alt="Message view when guest book administrator is logged in" style="border:0; height:200px; width:700px;"/>
+</p>
+
+<a name="Adding"></a><h3>Adding new guest book entries</h3>
+
+<p>When someone visits the guest book and wants to sign it he or she needs to use guest book
+add screen, which is shown underneath [Fig 3].
+<img src="img/man_img3.jpg" alt="Guest book new data entry form" style="border:0;"/>
+The add screen is accessed by the end user through the use of "New Guest Book Entry" buttons located at the top and bottom of the 
+main web page. User is required to fill in his name and the message he or she wants to add to the guest book.
+All other fields are optional. The e-mail is checked for validity of format, no actual DNS check is performed. The web
+site address is not checked for validity using DNS, however "http://" string is added if it is missing. The guest book
+entry creation date is system generated and cannot be edited by the end-user.
+</p>
+
+<p>All guest book fields are filtered for HTML tags, HTML tags are not allowed in guest book 
+for security reasons (script execution and playing with application look and feel). The administrator can
+choose to create a list of banned words (default list is provided). When a banned word is encountered
+inside a message, the message will not be recorded until offending word is removed. Another
+advanced option is a list of banned IP addresses. When someone attempts to enter a message into
+the guest book using banned IP address he will see error message and be prevented from entering his
+message.</p>
+
+<p>If user submits his entry and it is invalid he or she will see an error message, shown in red. The 
+user will have to modify his entry in order to comply with guest book rules before his message is
+accepted. Once the new entry is accepted the user is brought to the main web page where his message
+will appear at the top of the page provided "newest messages first" sorting was chosen by the guest book 
+administrator.</p>
+
+<p>When user enters his message one of randomly chosen images is shown with a text made up of three letters
+and three numbers. Users need to type the text they see on the image into the text area beside it. If they don't
+type correctly, then they cannot enter guest book entry. This feature is provided as a defense mechanism against
+automated message entry.</p>
+
+<p>New messages are added to the first data file which has free space in it. If no data files have any
+free space, a new data file is created with a single message in it. Data files names are 
+concatenation of the word "data" and a positive integer that increases by one with each subsequent data
+file. After the message is added to the data file it is also added to program's internal memory cache so 
+changes are automatically reflected on the main view page.</p>
+
+<a name="Editing"></a><h3>Editing guest book entries</h3>
+
+<p>This option is only available to guest book administrators that are logged into guest book. End-users
+cannot edit any messages already entered into the guest book including their own. When administrator is
+logged in he or she can edit every guest book message by clicking on the "Edit" button located under each 
+guest book entry. The edit message form, shown underneath [Fig 6] is very similar to the add message form, the main
+difference being the pre-population of the edit form with already existing guest book entry.
+<img src="img/man_img6.jpg" alt="Guest book edit form" style="border:0; height:600px; width:700px;"/>
+</p>
+
+<p>When administrator edits a message it is modified inside appropriate data file as well as memory cache.
+Changes made are immediately seen after they are made. All changes made using the edit form are
+subject to the same restrictions as end-user add message form.</p>
+
+<a name="Deleting"></a><h3>Deleting guest book entries</h3>
+
+<p>This option is only available to guest book administrators that are logged into guest book. End-users
+cannot delete any messages already entered into the guest book including their own. When administrator is
+logged in he or she can delete every guest book message by clicking on the "Delete" button located under each 
+guest book entry. When "Delete" button is clicked, the delete acknowledgment form is show, pictured underneath [Fig 7].
+Administrator can proceed with delete operation or cancel it. When the message is deleted from the guest book
+using the delete form it is removed from memory cache and XML data file.
+<img src="img/man_img7.jpg" alt="Guest book delete form" style="border:0; height:500px; width:600px;"/>
+</p>
+
+<p>It is possible to delete all messages from a data file. If this occurs the data file will be
+empty. However, it will never get deleted.</p>
+
+<a name="admin"></a><h3>Accessing and using administrative area</h3>
+
+<p>Since certain operations that can be performed on a guest book should be restricted to its owner, there is a need
+for secure administrative area. The area is secured using a password login (for extra security you may set up https,
+however, guest book is not considered a critical web application) shown on the picture [Fig 8].
+<img src="img/man_img8.jpg" alt="Guest book secure area login form" style="border:0; height:150px; width:700px;"/>
+For methods used to access administrative area login form please refer to <a href="#installation">XML Guest book installation</a> section.
+Inside the configuration XML file the password is protected with one-way hash function.
+</p>
+
+<p>The default password is "admin" (without the quotes). Passwords are case sensitive. There is no user name provided, as there is only
+one owner of the guest book and there is no user management. When administrator logs into guest book
+administrative area he or she is redirected to the guest book main view page enhanced with administrator only futures. On this page in addition to the end-user messages
+he has the option to edit guest book settings using "Edit guest book settings" button. This brings the administrator to the
+settings form shown on the picture [Fig 9].
+<img src="img/man_img9.jpg" alt="Guest book secure area settings editing form" style="border:0; height:435px; width:700px;"/>
+</p>
+
+<p>In case you forget your administrator's password you can use supplied reset page, pwreset.cfm. You will need to
+open this file in your favorite text editor and uncomment reset code. Instructions are also provided inside password-reset 
+file. You run the file once and your password is reset to "admin" (without the quotes) which is the default password.
+Since the passwords are hashed, there is no way to extract your original password.</p>
+
+<p>On the settings form the administrator is presented with all user configurable options available. Options set by the
+administrator take effect only after the "Update guest book settings" button gets clicked. Here is a detailed
+explanation of what each option does:</p>
+
+<ul>
+	<li><i>Enter administrator's password (min 5, max 50 characters)</i> - this is the administrator's password. It is case sensitive and allows administrator to reach administrative functions through login form.</li>
+	<li><i>Re-enter administrator's password</i> - just re-enter administrator's password (this prevents typos from being recorded as password change)</li>
+	<li><i>Enter user e-mail maximum length (positive integer)</i> - this is the number of characters end-user will be allowed to enter for his e-mail address on the guest book new message add form. This is also enforced on the administrator's edit form. Number entered here should be large enough to accommodates almost all e-mail addresses, by default it is 100.</li>
+	<li><i>Enter maximum user name length (positive integer)</i> - this is the number of characters end-user is allowed to enter for his name on the add form. It is also enforced on the administrator's edit form. The default value is 100.</li>
+	<li><i>Enter maximum user web site length (positive integer)</i> - this is the number of characters end-user is allowed to enter for his web site address (excluding "http://" if not entered by the user)</li>
+	<li><i>Enter maximum user message length - guest book entry (positive integer)</i> - this is the number of characters end-user is allowed to enter for his or her personalized message for the guest book owner. By default the limit is set to 500 characters, you may change it according to your needs; there is no upper limit.</li>
+	<li><i>Enter number of guest book entries to be shown per page (positive integer)</i> - this is the number of end-user messages that are shown per single view page; the default is 10.</li>
+	<li><i>Enter the maximum number of user guest book messages to be stored per data file (positive integer)</i> - the XML guest book stores end-user messages in data files that are by default under the "data" directory. More messages per file means less files but edits, additions and deletions might be a bit slower.</li>
+	<li><i>Do you want to receive e-mail notification when entry is added to guest book? Enter valid e-mail if yes (recommended)</i> - if the guest book owner wants to be notified by e-mail once a new entry is entered, this is the place to enter his e-mail. By default this field is left blank indicating that no one is going to be notified in the event of new guest book entry.</li>
+	<li><i>Please select the ordering of guest book messages that display on the first page</i> - the messages displayed on the guest book view page can be ordered in two ways. If you want the messages recently created to be displayed first, select "newest first". Otherwise select "Oldest first".</li>
+	<li><i>Please list IP addresses, which you want to ban, separated by a comma</i> - people using IP addresses that are listed here will not be able to add new messages to the guest book. This is a good way to get rid of abusive users.</li>
+	<li><i>Please list words you want to ban, separated by a comma</i> - administrator may want to prevent (make it harder) users from entering guest book messages with objectionable content. When user tries to enter a new guest book message that contains banned word the system will display an error message and the entry will not be recorded until the user edits out banned words and re-submits his message. There is default banned word list provided.</li>
+</ul>
+
+<p>When administrator clicks "Update guest book settings" button and all of his form entries are valid the guest book will inform him
+with a message on top of the entry form that his changes were accepted. If one or more of the entries is invalid, message on top of the form will indicate
+a problem and there will be error message under each form field that is invalid. Under 
+administrative option settings form there is some information provided about the guest book data files (their names) as well as
+the total number of guest book entries stored in the guest book.</p>
+
+<a name="look"></a><h3>Modifying guest book look and feel</h3>
+
+<p>To modify graphics that XML Guest Books shows to the end user, as well as to the guest book
+administrator is vary easy. Thanks to the separation of content and presentation you will not
+be required to modify any ColdFusion programming code in order to make the guest book look
+the way you desire.</p>
+
+<p>Most of the action takes place on the index.cfm page. This is the most complex page as far as
+display is concerned. All pictures are png, I like open source formats. The table is divided into
+three parts, using standard table tags. All you need to do is play around with them to achieve your 
+needs.</p>
+
+<p>By default there is only one CSS file for the whole guest book application.</p>
+
+<a name="performance"></a><h3>Guest book performance</h3>
+
+<p>The XML guest book uses caching to keep performance at acceptable levels. You may experience temporary slowdown once in a while (by default application
+scope refreshes every 2 days) for few seconds as the guest book re-initializes. There shouldn't be other slowdowns as everything is stored inside server's memory
+and thus response time is very fast. There shouldn't be any problems even with 1000's of guest book entries
+that are each 1000 characters in length. As for memory usage, 10000 messages each 1000 characters in length shouldn't use more than 20mb of
+server's memory. Most user's will never reach guest book entry numbers that are in 100000, so there is nothing to worry about.</p>
+
+<p>Instead of using singe large guest book XML data file I opted out to use few smaller files. The reason for this is that reads of the
+whole guest book data are infrequent (say once every two days) while possible writes to it are more frequent as users enter messages and administrator
+possibly edits them. Also, it is more manageable when one does backup. In the remote event of file corruption you loose only part of the guest book (if
+you didn't back up).</p>
+
+<a name="error"></a><h3>Error handling</h3>
+
+<p>There are three pages inside XML Guest Book whose purpose is to handle errors that application
+may throw.</p>
+<ul>
+	<li><i>reset.cfm</i> - this file is used to reset the CFCs and program's memory cache. It may be useful if memory corruption occurs.
+	It was used during development to test new versions of the CFCs.</li>
+	<li><i>pwreset.cfm</i> - this file is used to reset administrative passwords.</li>
+	<li><i>exceptionerr.cfm</i> - this file's contents is shown when internal program error occurs. Hopefully you
+	will not see this screen often. It prevents the end user from seeing ColdFusion internal error page which might
+	give security sensitive information.</li>
+</ul>
+
+<a name="Contact"></a><h3>Contact information</h3>
+
+<p>You can contact the XML Guest Book developer at <a name="guest book information" id="guest book information" href="mailto: tom@tomkitta.com?subject=Guest%20book%20information" title="guest book information">tom@tomkitta.com</a>
+You can also visit XML Guest Book development web site at <a name="http://www.tomkitta.com" id="http://www.tomkitta.com" href="http://www.tomkitta.com/coldfusion/gb/index.cfm" title="http://www.tomkitta.com">http://www.tomkitta.com</a>
+</p>
+
+<p>When reporting a bug in XML Guest Book, please submit as much information as you can about the problem.
+Screen shoots are very welcome as pictures sometimes do server as a substitute for 1000 words. Please refrain
+from just saying "it doesn't work" without providing any further explanation of the problem.</p>
+
+</body>
+</html>
